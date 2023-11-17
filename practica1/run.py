@@ -5,7 +5,7 @@ from plot import *
 
 # *=> constants
 
-SHOW_TERMINAL=False
+SHOW_TERMINAL=True
 SHOW_PLOT=True
 
 TEST_REPEAT=100
