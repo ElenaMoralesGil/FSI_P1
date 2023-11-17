@@ -2,6 +2,7 @@
 import search
 import time
 from plot import *
+from types import SimpleNamespace
 
 # *=> constants
 
@@ -10,6 +11,13 @@ SHOW_PLOT=True
 
 TEST_REPEAT=100
 
+algorithms = [
+    {"name": "DEPTH",           "func": search.depth_first_graph_search},
+    {"name": "BREADTH",         "func": search.breadth_first_graph_search},
+    {"name": "BRANCH & BOUND",  "func": search.branch_and_bound_graph_search},
+    {"name": "HEURISTIC",       "func": search.heuristic_graph_search}
+]
+
 PROBLEMS=[
     ["A","B"],
     ["O","E"],
@@ -17,21 +25,10 @@ PROBLEMS=[
     ["N","D"],
     ["M","F"]
 ]
-ALGORITHMS=[
-    "DEPTH",
-    "BREADTH",
-    "BRANCH & BOUND",
-    "HEURISTIC"
-]
-ALGORITHMS_FUNC=[
-    search.depth_first_graph_search,
-    search.breadth_first_graph_search,
-    search.branch_and_bound_graph_search,
-    search.heuristic_graph_search
-]
 
 # variables
-times = [0 for i in ALGORITHMS]
+times = [0 for _ in algorithms]
+print(times)
 
 
 # *=> functions
@@ -46,15 +43,15 @@ def test_search(func, title):
     
     tmp= (time.perf_counter_ns()-tmp)*0.001/TEST_REPEAT
 
-    if SHOW_TERMINAL: print("\tTiempo de ejecución: ", tmp , "µs")
+    if SHOW_TERMINAL: print("\n\tTiempo de ejecución: ", tmp , "µs")
     if SHOW_TERMINAL: print("\tCoste total:",node.path_cost, "-", node.path())
 
     return tmp
 
 def test_problem(problem, title):
     if SHOW_TERMINAL: print(f"# {title} =================================================================")
-    for i in range(0, len(ALGORITHMS)):
-        times[i]+= test_search(lambda show: ALGORITHMS_FUNC[i](problem, show), ALGORITHMS[i])
+    for i in range(0, len(algorithms)):
+        times[i]+= test_search(lambda show: algorithms[i]["func"](problem, show), algorithms[i]["name"])
     if SHOW_TERMINAL: print()
 
 
@@ -63,9 +60,8 @@ def test_problem(problem, title):
 if SHOW_TERMINAL: print()
 
 for elm in PROBLEMS:
-    title=f"{elm[0]}-{elm[1]}"
-    test_problem(search.GPSProblem('A', 'B', search.romania), title)
+    test_problem(search.GPSProblem('A', 'B', search.romania), f"{elm[0]}-{elm[1]}")
 
 for idx in range(0, len(times)): times[idx]/=len(times)
 
-if SHOW_PLOT: plot([i for i in ALGORITHMS],times, ALGORITHMS, "Tiempo de ejecucion (µs)")
+if SHOW_PLOT: plot([i for i in range(len(algorithms))],times, [elm["name"] for elm in algorithms], "Tiempo de ejecucion (µs)")
