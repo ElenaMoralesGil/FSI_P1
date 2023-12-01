@@ -4,6 +4,8 @@ import time
 from plot import *
 from collections import namedtuple
 
+Algorithm = namedtuple("Algorithm", "name func")
+
 # *=> constants
 
 SHOW_TERMINAL=True
@@ -11,13 +13,14 @@ SHOW_PLOT=True
 
 TEST_REPEAT=100
 
-algorithm = namedtuple("Algorithm", "name func")
+
+# *=> Problem definition
 
 algorithms = [
-    algorithm("DEPTH", search.depth_first_graph_search),
-    algorithm("BREADTH",         search.breadth_first_graph_search),
-    algorithm("BRANCH & BOUND",  search.branch_and_bound_graph_search),
-    algorithm("HEURISTIC",       search.heuristic_graph_search)
+    Algorithm("DEPTH", search.depth_first_graph_search),
+    Algorithm("BREADTH",         search.breadth_first_graph_search),
+    Algorithm("BRANCH & BOUND",  search.branch_and_bound_graph_search),
+    Algorithm("HEURISTIC",       search.heuristic_graph_search)
 ]
 
 PROBLEMS=[
@@ -39,7 +42,7 @@ def test_search(func, title):
     if SHOW_TERMINAL: print(f"\n\t# {title}")
     tmp=time.perf_counter_ns()
     
-    for i in range(1, TEST_REPEAT): func(False)
+    for _ in range(1, TEST_REPEAT): func(False)
         
     node=func(SHOW_TERMINAL)
     

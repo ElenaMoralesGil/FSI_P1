@@ -558,10 +558,12 @@ class Branch_and_bound(FIFOQueue):
     def append(self, item):
         super().append(item)
         self.A = sorted(self.A, key= lambda elm: elm.path_cost)
+        
 
     def extend(self, items):
         self.A.extend(items)
         self.A = sorted(self.A, key= lambda elm: elm.path_cost)
+
 
 
 class HeuristicMethod(FIFOQueue):

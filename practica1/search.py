@@ -106,8 +106,9 @@ def graph_search(problem, fringe, show=False):
     while fringe:
         node = fringe.pop()
         visited += 1
+
         if problem.goal_test(node.state):
-            # // *=>
+            # *=>
             if show: print(f"> found!\n\t* visited: {visited}\n\t* expanded: {expanded}\n\t* generated: {generated}")
             return node
         if node.state not in closed:
