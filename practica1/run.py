@@ -67,6 +67,6 @@ if SHOW_TERMINAL: print()
 for elm in PROBLEMS:
     test_problem(search.GPSProblem(elm[0], elm[1], search.romania), f"{elm[0]}-{elm[1]}")
 
-for idx in range(0, len(times)): times[idx]/=len(times)
+for idx in range(0, len(times)): times[idx]/=len(PROBLEMS)
 
 if SHOW_PLOT: plot([i for i in range(len(algorithms))],times, [elm.name for elm in algorithms], "Tiempo de ejecucion (µs)")
