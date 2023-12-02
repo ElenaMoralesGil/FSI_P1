@@ -24,13 +24,10 @@ La función **test_search** es la encargada de, con un algoritmo y un problema d
 
 El flujo principal de la aplicación es el siguiente: 
 
-Por cada problema, testeamos cada uno de los algoritmos. 
-
-Calculamos la media de los tiempos. 
-
-Si esta activado, se muestra una gráfica con las medias de los tiempos para cada uno de los algoritmos. 
-
-Se ha optado por usar picosegundos, ya que los resultados son de ese orden, y así tenemos más claridad. 
+* Por cada problema, testeamos cada uno de los algoritmos. 
+* Calculamos la media de los tiempos. 
+* Si esta activado, se muestra una gráfica con las medias de los tiempos para cada uno de los algoritmos. 
+* Se ha optado por usar picosegundos, ya que los resultados son de ese orden, y así tenemos más claridad. 
 
 ### Plot.py 
 

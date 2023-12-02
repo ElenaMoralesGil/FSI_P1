@@ -26,7 +26,7 @@ algorithms = [
 PROBLEMS=[
     ["A","B"],
     ["O","E"],
-     ["G","Z"],
+    ["G","Z"],
     ["N","D"],
     ["M","F"]
 ]
