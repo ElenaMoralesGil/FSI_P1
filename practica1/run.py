@@ -17,16 +17,16 @@ TEST_REPEAT=100
 # *=> Problem definition
 
 algorithms = [
-    Algorithm("DEPTH", search.depth_first_graph_search),
-    Algorithm("BREADTH",         search.breadth_first_graph_search),
-    Algorithm("BRANCH & BOUND",  search.branch_and_bound_graph_search),
-    Algorithm("HEURISTIC",       search.heuristic_graph_search)
+    Algorithm("DEPTH",              search.depth_first_graph_search),
+    Algorithm("BREADTH",            search.breadth_first_graph_search),
+    Algorithm("BRANCH & BOUND",     search.branch_and_bound_graph_search),
+    Algorithm("HEURISTIC",          search.heuristic_graph_search)
 ]
 
 PROBLEMS=[
     ["A","B"],
     ["O","E"],
-    ["G","Z"],
+     ["G","Z"],
     ["N","D"],
     ["M","F"]
 ]
@@ -48,7 +48,7 @@ def test_search(func, title):
     
     tmp= (time.perf_counter_ns()-tmp)*0.001/TEST_REPEAT
 
-    if SHOW_TERMINAL: print("\n\tTiempo de ejecución: ", tmp , "µs")
+    if SHOW_TERMINAL: print("\n\tTiempo de ejecución: ", tmp , "ps")
     if SHOW_TERMINAL: print("\tCoste total:",node.path_cost, "-", node.path())
 
     return tmp
@@ -69,4 +69,4 @@ for elm in PROBLEMS:
 
 for idx in range(0, len(times)): times[idx]/=len(PROBLEMS)
 
-if SHOW_PLOT: plot([i for i in range(len(algorithms))],times, [elm.name for elm in algorithms], "Tiempo de ejecucion (µs)")
+if SHOW_PLOT: plot([i for i in range(len(algorithms))],times, [elm.name for elm in algorithms], "Tiempo de ejecucion (ps)")
